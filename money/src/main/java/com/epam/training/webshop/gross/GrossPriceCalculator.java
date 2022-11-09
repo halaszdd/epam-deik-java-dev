@@ -1,8 +1,8 @@
 package com.epam.training.webshop.gross;
 
-import com.epam.training.webshop.cart.Cart;
+import com.epam.training.webshop.cart.ShoppingCartService;
 
 public interface GrossPriceCalculator {
 
-    double getAggregatedGrossPrice(Cart cart);
+    double getAggregatedGrossPrice(ShoppingCartService shoppingCartService);
 }

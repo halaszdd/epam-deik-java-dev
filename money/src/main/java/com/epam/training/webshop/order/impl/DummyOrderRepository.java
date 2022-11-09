@@ -14,7 +14,5 @@ public class DummyOrderRepository implements OrderRepository {
     @Override
     public void saveOrder(Cart cart) {
         LOGGER.info("Order created with Cart, products= {}", cart.getProducts());
-        LOGGER.info("NetPrice of the products= {}", cart.getTotalNetPrice());
-        LOGGER.info("GrossPrice of the products= {}", cart.getTotalGrossPrice());
     }
 }

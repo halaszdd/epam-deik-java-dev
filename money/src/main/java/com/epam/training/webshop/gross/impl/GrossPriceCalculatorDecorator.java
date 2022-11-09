@@ -1,6 +1,6 @@
 package com.epam.training.webshop.gross.impl;
 
-import com.epam.training.webshop.cart.Cart;
+import com.epam.training.webshop.cart.ShoppingCartService;
 import com.epam.training.webshop.gross.GrossPriceCalculator;
 
 public class GrossPriceCalculatorDecorator implements GrossPriceCalculator {
@@ -12,7 +12,7 @@ public class GrossPriceCalculatorDecorator implements GrossPriceCalculator {
     }
 
     @Override
-    public double getAggregatedGrossPrice(final Cart cart) {
-        return grossPriceCalculator.getAggregatedGrossPrice(cart);
+    public double getAggregatedGrossPrice(final ShoppingCartService shoppingCartService) {
+        return grossPriceCalculator.getAggregatedGrossPrice(shoppingCartService);
     }
 }

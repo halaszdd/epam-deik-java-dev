@@ -1,6 +1,9 @@
 package com.epam.training.money.impl;
 
+import com.epam.training.webshop.cart.Cart;
+import com.epam.training.webshop.cart.ShoppingCartService;
 import com.epam.training.webshop.cart.impl.ShoppingCart;
+import com.epam.training.webshop.cart.impl.ShoppingCartServiceImpl;
 import com.epam.training.webshop.gross.impl.GrossPriceCalculatorDecorator;
 import com.epam.training.webshop.order.Observer;
 import com.epam.training.webshop.order.OrderRepository;
@@ -19,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-class ShoppingCartTest {
+class ShoppingCartServiceTest {
 
     private static final String APPLE_PRODUCT_NAME = "Alma";
     public static final String WEIGHT_PACKAGING = "1kg";
@@ -41,13 +44,17 @@ class ShoppingCartTest {
     @Mock
     private ProductRepository productRepository;
 
+    @Mock
+    private Cart cart;
 
-    private ShoppingCart underTest;
+
+    private ShoppingCartService underTest;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        underTest = new ShoppingCart(
+        underTest = new ShoppingCartServiceImpl(
+                cart,
                 orderRepository,
                 productRepository,
                 grossPriceCalculatorDecorator
@@ -57,23 +64,17 @@ class ShoppingCartTest {
     @Test
     void testListProductsShouldReturnEmptyListWhenNoProductsAdded() {
         // Given
-        List<SimpleProduct> expectedResult = Collections.emptyList();
         // When
         List<Product> actualResult = underTest.getProducts();
         // Then
-        Assertions.assertEquals(expectedResult, actualResult);
+        Assertions.assertEquals(Collections.emptyList(), actualResult);
     }
 
     @Test
     void testListProductShouldReturnTheListOfProductsWhenNotEmpty() {
         // Given
-        Product product = SimpleProduct.builder("Alma")
-                .build();
-        List<Product> products = Collections.singletonList(product);
-        underTest = new ShoppingCart(orderRepository, productRepository,
-                grossPriceCalculatorDecorator, products, Collections.emptyList(),
-                Collections.emptyList()
-        );
+        List<Product> products = Collections.singletonList(ALMA);
+        BDDMockito.given(cart.getProducts()).willReturn(products);
         // When
         final List<Product> actual = underTest.getProducts();
         // Then
@@ -83,44 +84,22 @@ class ShoppingCartTest {
     @Test
     void testAddProductShouldAddProductWhenGivenOne() {
         // Given
-        ArrayList<Product> products = Mockito.spy(new ArrayList<>());
-        underTest = new ShoppingCart(orderRepository, productRepository,
-                grossPriceCalculatorDecorator, products,
-                Collections.emptyList(), Collections.emptyList());
-        Product alma = SimpleProduct
-                .builder(APPLE_PRODUCT_NAME)
-                .build();
-        /* Fontos, hogy mindig override-olva legyen az 'equals' és a 'hashCode' metódusok,
-
-        mert az 'equals' nélkül csak az objektum referenciák lesznek össze hasonlítva.
-
-        A Lenti Mock konfiguráció nem fog működni, mert a konfigurációban definiált product objektum
-        állapota nem egyezik majd meg az 'alma' nevű objektum állapotával.
-
-        BDDMockito.given(productRepository.getProductByName("Alma"))
-                .willReturn(Optional.of(
-                        SimpleProduct.builder("Alma")
-                                .withNetPrice(199)
-                                .build()));
-        */
-        BDDMockito.given(productRepository.getProductByName(APPLE_PRODUCT_NAME))
-                .willReturn(Optional.of(alma));
+        Cart cart = new ShoppingCart();
+        underTest = new ShoppingCartServiceImpl(cart, orderRepository, productRepository, grossPriceCalculatorDecorator);
+        BDDMockito.given(productRepository.getProductByName(APPLE_PRODUCT_NAME)).willReturn(Optional.of(ALMA));
         // When
         underTest.addProduct(APPLE_PRODUCT_NAME);
         // Then
-        /* A Spy objektumoknak van állapota de nyomon követhető, hogy milyen hivások történtek rajtuk. */
-        Mockito.verify(products).add(alma);
-        Assertions.assertEquals(List.of(alma), products);
+        Assertions.assertEquals(List.of(ALMA), cart.getProducts());
     }
 
     @Test
     void testOrderShouldCallSaveOrderOnOrderRepositoryWhenCallOrder() {
         // Given
         Observer confirmationService = Mockito.mock(DummyOrderConfirmationService.class);
-        Observer wareHouse =  Mockito.mock(DummyWareHouse.class);
+        Observer wareHouse = Mockito.mock(DummyWareHouse.class);
         final List<Observer> observers = List.of(confirmationService, wareHouse);
-        underTest = new ShoppingCart(orderRepository, productRepository, grossPriceCalculatorDecorator,
-                Collections.emptyList(), observers, Collections.emptyList());
+        underTest = new ShoppingCartServiceImpl(cart, orderRepository, productRepository, grossPriceCalculatorDecorator, observers);
         // When
         underTest.order();
         // Then
@@ -129,8 +108,8 @@ class ShoppingCartTest {
         Mockito.verify(orderRepository).saveOrder(ArgumentMatchers.any());
          */
         Mockito.verify(orderRepository, Mockito.times(1)).saveOrder(ArgumentMatchers.any());
-        Mockito.verify(confirmationService).notify(underTest);
-        Mockito.verify(wareHouse).notify(underTest);
+        Mockito.verify(confirmationService).notify(cart);
+        Mockito.verify(wareHouse).notify(cart);
     }
 
     @Test
@@ -148,9 +127,7 @@ class ShoppingCartTest {
     void testGetTotalNetPriceShouldReturnAggregatedPriceOfProductsWhenGivenCartWithProducts() {
         // Given
         final List<Product> products = List.of(ALMA, DINNYE);
-        underTest = new ShoppingCart(orderRepository, productRepository,
-                grossPriceCalculatorDecorator, products, Collections.emptyList(),
-                Collections.emptyList());
+        BDDMockito.given(cart.getProducts()).willReturn(products);
         // When
         final double actual = underTest.getTotalNetPrice();
         // Then
@@ -170,8 +147,7 @@ class ShoppingCartTest {
     void testSubscribeShouldAddNewObserverWhenGivenOne() {
         // Given
         final List<Observer> observers = Mockito.spy(new ArrayList<>());
-        underTest = new ShoppingCart(orderRepository, productRepository,
-                grossPriceCalculatorDecorator, Collections.emptyList(), observers, Collections.emptyList());
+        underTest = new ShoppingCartServiceImpl(cart, orderRepository, productRepository, grossPriceCalculatorDecorator, observers);
         Observer confirmationService = new DummyOrderConfirmationService();
         // When
         underTest.subscribe(confirmationService);

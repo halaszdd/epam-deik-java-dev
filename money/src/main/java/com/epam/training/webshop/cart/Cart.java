@@ -1,7 +1,6 @@
 package com.epam.training.webshop.cart;
 
 import com.epam.training.webshop.coupon.Coupon;
-import com.epam.training.webshop.order.Observable;
 import com.epam.training.webshop.product.Product;
 
 import java.util.List;
@@ -28,29 +27,16 @@ import java.util.List;
  *  7.1. this should include the price of the products, coupon discounts, and VAT
  *  7.2. VAT is 27% of the price of the products without any discount
  */
-public interface Cart extends Observable {
+public interface Cart {
 
     List<Product> getProducts();
 
     void addProduct(Product product);
-
-    void addProduct(String name);
-
 
     void removeProduct(Product productToRemove);
 
     void addCoupon(Coupon coupon);
 
     List<Coupon> getCouponsFromBasket();
-
-    double getTotalNetPrice();
-
-    double getTotalGrossPrice();
-
-    void order();
-
-    double getBasePrice();
-
-    double getDiscountForCoupons();
 
 }

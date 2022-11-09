@@ -1,46 +1,24 @@
 package com.epam.training.webshop.cart.impl;
 
 import com.epam.training.webshop.cart.Cart;
-import com.epam.training.webshop.cart.exception.UnknownProductException;
 import com.epam.training.webshop.coupon.Coupon;
-import com.epam.training.webshop.gross.GrossPriceCalculator;
-import com.epam.training.webshop.order.Observer;
-import com.epam.training.webshop.order.OrderRepository;
 import com.epam.training.webshop.product.Product;
-import com.epam.training.webshop.product.ProductRepository;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ShoppingCart implements Cart {
 
     private final List<Product> products;
     private final List<Coupon> coupons;
-    private final List<Observer> observers;
-    private final GrossPriceCalculator grossPriceCalculatorDecorator;
-    private final OrderRepository orderRepository;
-    private final ProductRepository productRepository;
 
-    public ShoppingCart(final OrderRepository orderRepository, final ProductRepository productRepository,
-                        final GrossPriceCalculator grossPriceCalculatorDecorator,
-                        final List<Product> products, final List<Observer> observers,
-                        final List<Coupon> coupons) {
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-        this.grossPriceCalculatorDecorator = grossPriceCalculatorDecorator;
-        this.products = products;
-        this.observers = observers;
-        this.coupons = coupons;
-    }
-
-    public ShoppingCart(final OrderRepository orderRepository, final ProductRepository productRepository,
-                        final GrossPriceCalculator grossPriceCalculator) {
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-        this.grossPriceCalculatorDecorator = grossPriceCalculator;
+    public ShoppingCart() {
         this.products = new ArrayList<>();
-        coupons = new ArrayList<>();
-        observers = new ArrayList<>();
+        this.coupons = new ArrayList<>();
     }
 
     @Override
@@ -50,22 +28,12 @@ public class ShoppingCart implements Cart {
 
     @Override
     public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    @Override
-    public void addProduct(final String productName) {
-        productRepository.getProductByName(productName)
-                .ifPresentOrElse(products::add,
-                        () -> {
-                            throw new UnknownProductException(productName);
-                        }
-                );
+        this.products.add(product);
     }
 
     @Override
     public void removeProduct(Product productToRemove) {
-        products.remove(productToRemove);
+        this.products.remove(productToRemove);
     }
 
     @Override
@@ -79,44 +47,23 @@ public class ShoppingCart implements Cart {
     }
 
     @Override
-    public double getTotalNetPrice() {
-        final double basePrice = getBasePrice();
-        final double discount = getDiscountForCoupons();
-        return basePrice - discount;
-    }
-
-    @Override
-    public double getTotalGrossPrice() {
-        return grossPriceCalculatorDecorator.getAggregatedGrossPrice(this);
-    }
-
-    @Override
-    public void order() {
-        orderRepository.saveOrder(this);
-        observers.forEach(observer -> observer.notify(this));
-    }
-
-    @Override
-    public double getBasePrice() {
-        double basePrice = 0;
-        for (final Product currentProduct : products) {
-            basePrice += currentProduct.getNetPrice();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
-        return basePrice;
-    }
 
-    @Override
-    public double getDiscountForCoupons() {
-        double discount = 0;
-        for (Coupon coupon : coupons) {
-            discount += coupon.getDiscountForProducts(products);
+        if (o == null || getClass() != o.getClass()) {
+            return false;
         }
-        return discount;
+
+        ShoppingCart that = (ShoppingCart) o;
+
+        return new EqualsBuilder().append(products, that.products).append(coupons, that.coupons).isEquals();
     }
 
     @Override
-    public void subscribe(Observer observer) {
-        observers.add(observer);
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(products).append(coupons).toHashCode();
     }
 
     @Override
@@ -124,9 +71,6 @@ public class ShoppingCart implements Cart {
         return "ShoppingCart{" +
                 "products=" + products +
                 ", coupons=" + coupons +
-                ", grossPriceCalculatorDecorator=" + grossPriceCalculatorDecorator +
-                ", orderRepository=" + orderRepository +
                 '}';
     }
-
 }

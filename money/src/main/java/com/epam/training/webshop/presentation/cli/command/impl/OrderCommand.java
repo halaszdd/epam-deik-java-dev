@@ -1,21 +1,21 @@
 package com.epam.training.webshop.presentation.cli.command.impl;
 
-import com.epam.training.webshop.cart.Cart;
+import com.epam.training.webshop.cart.ShoppingCartService;
 import com.epam.training.webshop.presentation.cli.command.Command;
 
 public class OrderCommand implements Command {
 
-    private final Cart cartToOrder;
+    private final ShoppingCartService shoppingCartService;
 
-    public OrderCommand(Cart cartToOrder) {
-        this.cartToOrder = cartToOrder;
+    public OrderCommand(ShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
     }
 
     @Override
     public String execute() {
-        double value = cartToOrder.getTotalNetPrice();
-        double taxedTotalValue = cartToOrder.getTotalGrossPrice();
-        cartToOrder.order();
+        double value = shoppingCartService.getTotalNetPrice();
+        double taxedTotalValue = shoppingCartService.getTotalGrossPrice();
+        shoppingCartService.order();
         return "Ordered a basket worth (netPrice):" + value + " with tax (grossPrice): " + taxedTotalValue;
     }
 }

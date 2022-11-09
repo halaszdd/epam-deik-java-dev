@@ -1,17 +1,21 @@
 package com.epam.training.webshop.presentation.cli.command.impl;
 
-import com.epam.training.webshop.cart.Cart;
+import com.epam.training.webshop.cart.ShoppingCartService;
 import com.epam.training.webshop.presentation.cli.command.AbstractCommandLineParser;
 import com.epam.training.webshop.presentation.cli.command.Command;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
+@Component
+@Order(3)
 public class OrderCommandLineParser extends AbstractCommandLineParser {
 
     private static final String ORDER_COMMAND = "order basket";
 
-    private final Cart cartToOrder;
+    private final ShoppingCartService shoppingCartService;
 
-    public OrderCommandLineParser(Cart cartToOrder) {
-        this.cartToOrder = cartToOrder;
+    public OrderCommandLineParser(ShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
     }
 
     @Override
@@ -21,6 +25,6 @@ public class OrderCommandLineParser extends AbstractCommandLineParser {
 
     @Override
     protected Command doCreateCommand(String commandLine) {
-        return new OrderCommand(cartToOrder);
+        return new OrderCommand(shoppingCartService);
     }
 }
