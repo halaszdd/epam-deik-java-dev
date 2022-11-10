@@ -5,6 +5,7 @@ import com.epam.training.webshop.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,7 @@ public class DummyProductRepository implements ProductRepository {
 
     private List<Product> products;
 
+    @PostConstruct
     private void initProducts() {
         this.products = List.of(
                 SimpleProduct.builder(appleName).withNetPrice(applePrice).withPackaging(applePackaging).build(),

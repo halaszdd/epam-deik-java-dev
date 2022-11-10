@@ -6,6 +6,7 @@ import com.epam.training.webshop.cart.exception.UnknownProductException;
 import com.epam.training.webshop.coupon.Coupon;
 import com.epam.training.webshop.gross.GrossPriceCalculator;
 import com.epam.training.webshop.order.Observer;
+import com.epam.training.webshop.order.Order;
 import com.epam.training.webshop.order.OrderRepository;
 import com.epam.training.webshop.product.Product;
 import com.epam.training.webshop.product.ProductRepository;
@@ -92,9 +93,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void order() {
-        orderRepository.saveOrder(cart);
+    public Order order() {
+        final Order order = new Order(this.getProducts(), this.getTotalNetPrice(), this.getTotalGrossPrice());
+        orderRepository.saveOrder(order);
         observers.forEach(observer -> observer.notify(cart));
+        return order;
     }
 
     @Override
