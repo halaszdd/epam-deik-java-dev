@@ -1,5 +1,7 @@
-package com.epam.training.ticketservice;
+package com.epam.training.ticketservice.commands;
 
+import com.epam.training.ticketservice.services.AuthenticationService;
+import com.epam.training.ticketservice.domain.Role;
 import org.springframework.shell.Availability;
 
 public abstract class SecuredCommands {

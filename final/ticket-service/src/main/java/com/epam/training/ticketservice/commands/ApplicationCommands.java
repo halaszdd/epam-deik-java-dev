@@ -1,5 +1,7 @@
-package com.epam.training.ticketservice;
+package com.epam.training.ticketservice.commands;
 
+import com.epam.training.ticketservice.services.AuthenticationService;
+import com.epam.training.ticketservice.domain.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.shell.standard.ShellComponent;
@@ -7,7 +9,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 
 @ShellComponent
-public class ApplicationCommands extends SecuredCommands{
+public class ApplicationCommands extends SecuredCommands {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationCommands.class);
 

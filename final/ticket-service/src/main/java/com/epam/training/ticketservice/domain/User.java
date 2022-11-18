@@ -1,4 +1,4 @@
-package com.epam.training.ticketservice;
+package com.epam.training.ticketservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

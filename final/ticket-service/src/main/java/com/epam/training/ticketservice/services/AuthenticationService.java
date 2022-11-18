@@ -1,9 +1,11 @@
-package com.epam.training.ticketservice;
+package com.epam.training.ticketservice.services;
 
+import com.epam.training.ticketservice.repositories.UserRepository;
+import com.epam.training.ticketservice.domain.User;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class AuthenticationService {
 
     private final UserRepository userRepository;

@@ -1,4 +1,4 @@
-package com.epam.training.ticketservice;
+package com.epam.training.ticketservice.configuration;
 
 import org.jline.utils.AttributedString;
 import org.jline.utils.AttributedStyle;
