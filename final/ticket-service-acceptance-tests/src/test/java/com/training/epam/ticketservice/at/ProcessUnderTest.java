@@ -88,7 +88,6 @@ public class ProcessUnderTest implements AutoCloseable {
     }
 
     private void verifyProcessIsRunning() {
-        System.out.println(process);
         if (this.process == null || !process.isAlive()) {
             throw new AssertionError("The service is not running.");
         }

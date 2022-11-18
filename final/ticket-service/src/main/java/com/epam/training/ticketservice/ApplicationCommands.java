@@ -22,7 +22,7 @@ public class ApplicationCommands extends SecuredCommands{
             LOGGER.info("Signed in!");
         }
         catch (RuntimeException e) {
-            System.out.println("Login failed due to incorrect credentials!");
+            System.out.println("Login failed due to incorrect credentials");
         }
     }
 
