@@ -1,0 +1,10 @@
+com\epam\training\ticketservice\Role.class
+com\epam\training\ticketservice\User.class
+com\epam\training\ticketservice\SecuredCommands.class
+com\epam\training\ticketservice\CustomPromptProvider.class
+com\epam\training\ticketservice\UserRepository.class
+com\epam\training\ticketservice\Application.class
+com\epam\training\ticketservice\TestDataLoader.class
+com\epam\training\ticketservice\User$UserBuilder.class
+com\epam\training\ticketservice\AuthenticationService.class
+com\epam\training\ticketservice\ApplicationCommands.class
