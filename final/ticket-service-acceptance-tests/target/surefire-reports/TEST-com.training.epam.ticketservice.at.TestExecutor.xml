@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="15" name="com.training.epam.ticketservice.at.TestExecutor" time="78.375" errors="0" skipped="0">
+<testsuite tests="17" failures="6" name="com.training.epam.ticketservice.at.TestExecutor" time="144.193" errors="4" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17.0.2+8-86"/>
@@ -61,184 +61,54 @@
     <property name="sun.stdout.encoding" value="cp852"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="3.931"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="3.972"/>
-  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="3.426">
-    <failure message="
-Expected: &quot;Login failed due to incorrect credentials&quot;
-     but: was &quot;Login failed due to incorrect credentials!&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Login failed due to incorrect credentials&quot;
-     but: was &quot;Login failed due to incorrect credentials!&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Login failed due to incorrect credentials&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/accounts.feature:23)
-</failure>
-    <system-out>Process[pid=1856, exitValue=&quot;not exited&quot;]
-Process[pid=1856, exitValue=&quot;not exited&quot;]
-Process[pid=1856, exitValue=&quot;not exited&quot;]
-Process[pid=1856, exitValue=&quot;not exited&quot;]
-</system-out>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="3.925">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:11)
-</failure>
-    <system-out>Process[pid=6648, exitValue=&quot;not exited&quot;]
-Process[pid=6648, exitValue=&quot;not exited&quot;]
-Process[pid=6648, exitValue=&quot;not exited&quot;]
-Process[pid=6648, exitValue=&quot;not exited&quot;]
-Process[pid=6648, exitValue=&quot;not exited&quot;]
-Process[pid=6648, exitValue=&quot;not exited&quot;]
-</system-out>
-  </testcase>
-  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="4.163">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
+  <testcase classname="allow creating accounts and logging in" name="the admin account exists by default and can be logged in with the correct password" time="4.596"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can be signed out" time="4.425"/>
+  <testcase classname="allow creating accounts and logging in" name="the admin account can not be logged in with incorrect password" time="3.89"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can create and list movies" time="4.098"/>
+  <testcase classname="allows creating movie descriptions" name="an admin user can update a movie" time="19.352">
+    <error type="java.util.concurrent.TimeoutException">java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
+	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:155)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.runWithTimeout(ProcessUnderTest.java:87)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.readNextLine(ProcessUnderTest.java:47)
+	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:42)
 	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:19)
-</failure>
-    <system-out>Process[pid=14112, exitValue=&quot;not exited&quot;]
-Process[pid=14112, exitValue=&quot;not exited&quot;]
-Process[pid=14112, exitValue=&quot;not exited&quot;]
-Process[pid=14112, exitValue=&quot;not exited&quot;]
-Process[pid=14112, exitValue=&quot;not exited&quot;]
-Process[pid=14112, exitValue=&quot;not exited&quot;]
-Process[pid=14112, exitValue=&quot;not exited&quot;]
-</system-out>
+</error>
   </testcase>
-  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="4.299">
-    <failure message="
-Expected: &quot;There are no movies at the moment&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;There are no movies at the moment&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
+  <testcase classname="allows creating movie descriptions" name="an admin user can delete a movie" time="19.666">
+    <error type="java.util.concurrent.TimeoutException">java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
+	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:155)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.runWithTimeout(ProcessUnderTest.java:87)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.readNextLine(ProcessUnderTest.java:47)
+	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:42)
 	at ✽.the next line of the output is &quot;There are no movies at the moment&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:27)
-</failure>
-    <system-out>Process[pid=1852, exitValue=&quot;not exited&quot;]
-Process[pid=1852, exitValue=&quot;not exited&quot;]
-Process[pid=1852, exitValue=&quot;not exited&quot;]
-Process[pid=1852, exitValue=&quot;not exited&quot;]
-Process[pid=1852, exitValue=&quot;not exited&quot;]
-Process[pid=1852, exitValue=&quot;not exited&quot;]
-Process[pid=1852, exitValue=&quot;not exited&quot;]
-</system-out>
+</error>
   </testcase>
-  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="4.208">
-    <failure message="
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Sátántangó (drama, 450 minutes)&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list movies&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes)&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/movies.feature:35)
-</failure>
-    <system-out>Process[pid=8912, exitValue=&quot;not exited&quot;]
-Process[pid=8912, exitValue=&quot;not exited&quot;]
-Process[pid=8912, exitValue=&quot;not exited&quot;]
-Process[pid=8912, exitValue=&quot;not exited&quot;]
-Process[pid=8912, exitValue=&quot;not exited&quot;]
-Process[pid=8912, exitValue=&quot;not exited&quot;]
-Process[pid=8912, exitValue=&quot;not exited&quot;]
-</system-out>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="3.972">
-    <failure message="
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:12)
-</failure>
-    <system-out>Process[pid=9828, exitValue=&quot;not exited&quot;]
-Process[pid=9828, exitValue=&quot;not exited&quot;]
-Process[pid=9828, exitValue=&quot;not exited&quot;]
-Process[pid=9828, exitValue=&quot;not exited&quot;]
-Process[pid=9828, exitValue=&quot;not exited&quot;]
-Process[pid=9828, exitValue=&quot;not exited&quot;]
-</system-out>
-  </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="4.225">
-    <failure message="
-Expected: &quot;Room Pedersoli with 100 seats, 10 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 100 seats, 10 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
+  <testcase classname="allows creating movie descriptions" name="an unauthenticated user can list movies" time="5.064"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can create and list rooms" time="4.331"/>
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can update a room" time="19.381">
+    <error type="java.util.concurrent.TimeoutException">java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
+	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:155)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.runWithTimeout(ProcessUnderTest.java:87)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.readNextLine(ProcessUnderTest.java:47)
+	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:42)
 	at ✽.the next line of the output is &quot;Room Pedersoli with 100 seats, 10 rows and 10 columns&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:20)
-</failure>
-    <system-out>Process[pid=11844, exitValue=&quot;not exited&quot;]
-Process[pid=11844, exitValue=&quot;not exited&quot;]
-Process[pid=11844, exitValue=&quot;not exited&quot;]
-Process[pid=11844, exitValue=&quot;not exited&quot;]
-Process[pid=11844, exitValue=&quot;not exited&quot;]
-Process[pid=11844, exitValue=&quot;not exited&quot;]
-Process[pid=11844, exitValue=&quot;not exited&quot;]
-</system-out>
+</error>
   </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="4.199">
-    <failure message="
-Expected: &quot;There are no rooms at the moment&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;There are no rooms at the moment&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an admin user can delete a room" time="19.352">
+    <error type="java.util.concurrent.TimeoutException">java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:204)
+	at com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(SimpleTimeLimiter.java:155)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.runWithTimeout(ProcessUnderTest.java:87)
+	at com.training.epam.ticketservice.at.ProcessUnderTest.readNextLine(ProcessUnderTest.java:47)
+	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:42)
 	at ✽.the next line of the output is &quot;There are no rooms at the moment&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:28)
-</failure>
-    <system-out>Process[pid=10252, exitValue=&quot;not exited&quot;]
-Process[pid=10252, exitValue=&quot;not exited&quot;]
-Process[pid=10252, exitValue=&quot;not exited&quot;]
-Process[pid=10252, exitValue=&quot;not exited&quot;]
-Process[pid=10252, exitValue=&quot;not exited&quot;]
-Process[pid=10252, exitValue=&quot;not exited&quot;]
-Process[pid=10252, exitValue=&quot;not exited&quot;]
-</system-out>
+</error>
   </testcase>
-  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="4.221">
-    <failure message="
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
-Expected: &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;list rooms&apos;&amp;#27;[0m&quot;
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
-	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
-	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
-	at ✽.the next line of the output is &quot;Room Pedersoli with 200 seats, 20 rows and 10 columns&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/rooms.feature:36)
-</failure>
-    <system-out>Process[pid=5544, exitValue=&quot;not exited&quot;]
-Process[pid=5544, exitValue=&quot;not exited&quot;]
-Process[pid=5544, exitValue=&quot;not exited&quot;]
-Process[pid=5544, exitValue=&quot;not exited&quot;]
-Process[pid=5544, exitValue=&quot;not exited&quot;]
-Process[pid=5544, exitValue=&quot;not exited&quot;]
-Process[pid=5544, exitValue=&quot;not exited&quot;]
-</system-out>
-  </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="5.833">
+  <testcase classname="allow creating, reading, updating and deleting rooms where the screenings will happen" name="an unauthenticated user can list rooms" time="4.574"/>
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can create and query screenings" time="5.934">
     <failure message="
 Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;
      but: was &quot;&amp;#27;[31mNo command found for &apos;list screenings&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
@@ -249,47 +119,20 @@ Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, 
 	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
 	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:18)
 </failure>
-    <system-out>Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-Process[pid=3012, exitValue=&quot;not exited&quot;]
-</system-out>
   </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="5.411">
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create overlapping screenings in the same room" time="5.752">
     <failure message="
 Expected: &quot;There is an overlapping screening&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;create screening Spirited Away Pedersoli 2021-03-15 10:50 &apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
+     but: was &quot;2022-11-20 19:22:15.255  INFO 1212 --- [           main] c.e.t.t.services.ScreeningService        : Screening created: Screening(time=null)&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
 Expected: &quot;There is an overlapping screening&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;create screening Spirited Away Pedersoli 2021-03-15 10:50 &apos;&amp;#27;[0m&quot;
+     but: was &quot;2022-11-20 19:22:15.255  INFO 1212 --- [           main] c.e.t.t.services.ScreeningService        : Screening created: Screening(time=null)&quot;
 	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
 	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
 	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
 	at ✽.the next line of the output is &quot;There is an overlapping screening&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:26)
 </failure>
-    <system-out>Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-Process[pid=8972, exitValue=&quot;not exited&quot;]
-</system-out>
   </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="5.745">
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create overlapping screenings in different rooms" time="6.401">
     <failure message="
 Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;
      but: was &quot;&amp;#27;[31mNo command found for &apos;list screenings&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
@@ -300,47 +143,20 @@ Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, 
 	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
 	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 10:45&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:36)
 </failure>
-    <system-out>Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-Process[pid=11456, exitValue=&quot;not exited&quot;]
-</system-out>
   </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="5.432">
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can not create screenings during a 10 minute long breaks after another screening in the same room" time="5.716">
     <failure message="
 Expected: &quot;This would start in the break period after another screening in this room&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;create screening Spirited Away Pedersoli 2021-03-15 18:39 &apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
+     but: was &quot;2022-11-20 19:22:27.372  INFO 11364 --- [           main] c.e.t.t.services.ScreeningService        : Screening created: Screening(time=null)&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
 Expected: &quot;This would start in the break period after another screening in this room&quot;
-     but: was &quot;&amp;#27;[31mNo command found for &apos;create screening Spirited Away Pedersoli 2021-03-15 18:39 &apos;&amp;#27;[0m&quot;
+     but: was &quot;2022-11-20 19:22:27.372  INFO 11364 --- [           main] c.e.t.t.services.ScreeningService        : Screening created: Screening(time=null)&quot;
 	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
 	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
 	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
 	at ✽.the next line of the output is &quot;This would start in the break period after another screening in this room&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:44)
 </failure>
-    <system-out>Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-Process[pid=10336, exitValue=&quot;not exited&quot;]
-</system-out>
   </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="5.675">
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin can create screenings even if there is a break after a screening in a different room" time="5.832">
     <failure message="
 Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 11:00&quot;
      but: was &quot;&amp;#27;[31mNo command found for &apos;list screenings&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
@@ -351,22 +167,8 @@ Expected: &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, 
 	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
 	at ✽.the next line of the output is &quot;Sátántangó (drama, 450 minutes), screened in room Pedersoli, at 2021-03-15 11:00&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:54)
 </failure>
-    <system-out>Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-Process[pid=10688, exitValue=&quot;not exited&quot;]
-</system-out>
   </testcase>
-  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="5.738">
+  <testcase classname="allows creating, deleting and listing screenings" name="The admin user can delete screenings" time="5.829">
     <failure message="
 Expected: &quot;There are no screenings&quot;
      but: was &quot;&amp;#27;[31mNo command found for &apos;list screenings&apos;&amp;#27;[0m&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
@@ -377,19 +179,5 @@ Expected: &quot;There are no screenings&quot;
 	at com.training.epam.ticketservice.at.GenericCliProcessStepDefs.theNextLineOfOutputContains(GenericCliProcessStepDefs.java:43)
 	at ✽.the next line of the output is &quot;There are no screenings&quot;(file:///C:/Users/Halász/IdeaProjects/epam-deik-java-dev/final/ticket-service-acceptance-tests/src/test/resources/features/screenings.feature:63)
 </failure>
-    <system-out>Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-Process[pid=10332, exitValue=&quot;not exited&quot;]
-</system-out>
   </testcase>
 </testsuite>
