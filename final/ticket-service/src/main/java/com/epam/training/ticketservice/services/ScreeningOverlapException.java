@@ -1,6 +1,6 @@
 package com.epam.training.ticketservice.services;
 
-public class ScreeningOverlapException extends RuntimeException{
+public class ScreeningOverlapException extends RuntimeException {
 
     public ScreeningOverlapException() {
         super();

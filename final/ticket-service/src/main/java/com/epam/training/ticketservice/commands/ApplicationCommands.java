@@ -1,7 +1,7 @@
 package com.epam.training.ticketservice.commands;
 
-import com.epam.training.ticketservice.services.AuthenticationService;
 import com.epam.training.ticketservice.domain.Role;
+import com.epam.training.ticketservice.services.AuthenticationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.shell.standard.ShellComponent;
@@ -20,10 +20,9 @@ public class ApplicationCommands extends SecuredCommands {
     @ShellMethod(key = "sign in privileged")
     public void signIn(String username, String password) {
         try {
-            authenticationService.authenticate(username,password);
+            authenticationService.authenticate(username, password);
             LOGGER.info("Signed in!");
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             System.out.println("Login failed due to incorrect credentials");
         }
     }
@@ -36,12 +35,11 @@ public class ApplicationCommands extends SecuredCommands {
     }
 
     @ShellMethod(key = "describe account")
-    public void describeAccount(){
+    public void describeAccount() {
         var user = authenticationService.getLoggedInUser();
-        if (user!=null && user.getRole().equals(Role.ADMIN)) {
+        if (user != null && user.getRole().equals(Role.ADMIN)) {
             System.out.println("Signed in with privileged account " + "'" + user.getUsername() + "'");
-        }
-        else {
+        } else {
             System.out.println("You are not signed in");
         }
     }

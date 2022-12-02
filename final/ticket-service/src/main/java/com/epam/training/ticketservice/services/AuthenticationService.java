@@ -1,7 +1,7 @@
 package com.epam.training.ticketservice.services;
 
-import com.epam.training.ticketservice.repositories.UserRepository;
 import com.epam.training.ticketservice.domain.User;
+import com.epam.training.ticketservice.repositories.UserRepository;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +21,7 @@ public class AuthenticationService {
         var user = userRepository.findById(username).orElseThrow();
         if (password.equals(user.getPassword())) {
             loggedInUser = user;
-        }
-        else {
+        } else {
             throw new RuntimeException();
         }
     }

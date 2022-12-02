@@ -1,6 +1,5 @@
 package com.epam.training.ticketservice.commands;
 
-import com.epam.training.ticketservice.domain.Movie;
 import com.epam.training.ticketservice.domain.Room;
 import com.epam.training.ticketservice.services.AuthenticationService;
 import com.epam.training.ticketservice.services.RoomService;
@@ -43,13 +42,11 @@ public class RoomCommands extends SecuredCommands {
     @ShellMethod(key = "list rooms")
     public void listRooms() {
         List<Room> rooms = roomService.listRooms();
-        if (rooms.isEmpty())
-        {
+        if (rooms.isEmpty()) {
             System.out.println("There are no rooms at the moment");
-        }
-        else {
-            for (var e:rooms) {
-                System.out.println("Room " + e.getName() + " with " + e.getRows()*e.getColumns() + " seats, " + e.getRows() + " rows and " + e.getColumns() + " columns");
+        } else {
+            for (var e : rooms) {
+                System.out.println("Room " + e.getName() + " with " + e.getRows() * e.getColumns() + " seats, " + e.getRows() + " rows and " + e.getColumns() + " columns");
             }
         }
     }

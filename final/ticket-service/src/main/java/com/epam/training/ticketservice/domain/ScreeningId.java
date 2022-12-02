@@ -2,7 +2,10 @@ package com.epam.training.ticketservice.domain;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 

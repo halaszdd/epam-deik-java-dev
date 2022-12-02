@@ -1,8 +1,6 @@
 package com.epam.training.ticketservice;
 
-import com.epam.training.ticketservice.domain.Movie;
 import com.epam.training.ticketservice.domain.Role;
-import com.epam.training.ticketservice.domain.Room;
 import com.epam.training.ticketservice.domain.User;
 import com.epam.training.ticketservice.repositories.MovieRepository;
 import com.epam.training.ticketservice.repositories.RoomRepository;
@@ -27,7 +25,7 @@ public class TestDataLoader {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         userRepository.save(User.builder().username("admin").password("admin").role(Role.ADMIN).build());
         //movieRepository.save(Movie.builder().title("Star Wars ROTS").category("sci-fi").length(160).build());
         //roomRepository.save(Room.builder().name("RoomNo1").rows(16).columns(16).build());

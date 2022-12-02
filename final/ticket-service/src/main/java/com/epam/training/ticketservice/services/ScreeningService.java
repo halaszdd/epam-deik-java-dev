@@ -1,6 +1,8 @@
 package com.epam.training.ticketservice.services;
 
-import com.epam.training.ticketservice.domain.*;
+import com.epam.training.ticketservice.domain.RegisterScreeningModel;
+import com.epam.training.ticketservice.domain.Screening;
+import com.epam.training.ticketservice.domain.ScreeningId;
 import com.epam.training.ticketservice.repositories.MovieRepository;
 import com.epam.training.ticketservice.repositories.RoomRepository;
 import com.epam.training.ticketservice.repositories.ScreeningRepository;
@@ -13,8 +15,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ScreeningService {
