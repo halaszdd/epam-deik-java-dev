@@ -19,6 +19,6 @@ public class Room {
     private String name;
     private int rows;
     private int columns;
-    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "screeningId.room", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Screening> screenings;
 }

@@ -10,13 +10,15 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 
-
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @ShellComponent
 public class ScreeningCommands extends SecuredCommands {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private final ScreeningService screeningService;
 
@@ -28,44 +30,43 @@ public class ScreeningCommands extends SecuredCommands {
     @ShellMethod(key = "create screening")
     @ShellMethodAvailability(value = "isAdmin")
     public void createScreening(String title, String name, String time) {
-
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-        var parsedTime = LocalDateTime.parse(time, formatter);
-
         var screening = RegisterScreeningModel.builder()
                 .title(title)
                 .name(name)
-                .time(parsedTime)
+                .time(LocalDateTime.parse(time, FORMATTER))
                 .build();
         try {
             screeningService.createScreening(screening);
-        }
-        catch (ScreeningOverlapException overlapException) {
+        } catch (ScreeningOverlapException overlapException) {
             System.out.println("There is an overlapping screening");
-        }
-        catch (ScreeningBreaktimeOverlapException breaktimeOverlapException) {
+        } catch (ScreeningBreaktimeOverlapException breaktimeOverlapException) {
             System.out.println("This would start in the break period after another screening in this room");
         }
     }
 
-    @ShellMethod(key = "delete screening")
-    @ShellMethodAvailability(value = "isAdmin")
-    public void deleteScreening(String title, String name, String time) {
-        screeningService.deleteScreening(title);
-    }
-
     @ShellMethod(key = "list screenings")
     public void listScreenings() {
-        List<Screening> screenings= screeningService.listScreenings();
-        if (screenings.isEmpty())
-        {
+        List<Screening> screenings = screeningService.listScreenings();
+        var listElemFormat = new MessageFormat("{0} ({1}, {2} minutes), screened in room {3}, at {4}");
+
+        if (screenings.isEmpty()) {
             System.out.println("There are no screenings");
+        } else {
+            screenings.forEach(e -> {
+                final var movie = e.getScreeningId().getMovie();
+                final var room = e.getScreeningId().getRoom();
+                System.out.println(listElemFormat.format(new Object[]{
+                        movie.getTitle(),
+                        movie.getCategory(),
+                        movie.getLength(),
+                        room.getName(),
+                        FORMATTER.format(e.getScreeningId().getTime())}));
+            });
         }
-        else {
-            for (var e:screenings) {
-                System.out.println(e.getMovie().getTitle() + "(" + e.getMovie().getCategory() + ", " + e.getMovie().getLength() + " minutes), screened in room " + e.getRoom().getName() + ", at " + e.getTime());
-            }
-        }
+    }
+
+    @ShellMethod(key = "delete screening")
+    public void deleteScreening(String movieName, String roomName, String time) {
+        screeningService.deleteScreening(movieName, roomName, LocalDateTime.parse(time, FORMATTER));
     }
 }

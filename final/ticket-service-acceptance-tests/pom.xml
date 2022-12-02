@@ -80,6 +80,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
                     <includes>
                         <include>**/TestExecutor.java</include>
                     </includes>

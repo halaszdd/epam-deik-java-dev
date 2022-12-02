@@ -20,6 +20,6 @@ public class Movie {
     private String title;
     private String category;
     private int length;
-    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "screeningId.movie", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Screening> screenings;
 }

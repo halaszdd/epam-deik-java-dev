@@ -1,17 +1,22 @@
 package com.epam.training.ticketservice.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Embeddable
 public class ScreeningId implements Serializable {
-
-    private String movie;
-    private String room;
-
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ToString.Exclude
+    private Movie movie;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ToString.Exclude
+    private Room room;
+    private LocalDateTime time;
 }
