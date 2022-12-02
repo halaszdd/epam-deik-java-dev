@@ -29,7 +29,7 @@ public class TestDataLoader {
     @PostConstruct
     public void init(){
         userRepository.save(User.builder().username("admin").password("admin").role(Role.ADMIN).build());
-        movieRepository.save(Movie.builder().title("Star Wars ROTS").category("sci-fi").length(160).build());
-        roomRepository.save(Room.builder().name("RoomNo1").rows(16).columns(16).build());
+        //movieRepository.save(Movie.builder().title("Star Wars ROTS").category("sci-fi").length(160).build());
+        //roomRepository.save(Room.builder().name("RoomNo1").rows(16).columns(16).build());
     }
 }

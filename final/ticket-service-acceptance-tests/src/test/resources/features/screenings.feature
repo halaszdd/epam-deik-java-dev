@@ -1,3 +1,4 @@
+# encoding: utf-8
 Feature: allows creating, deleting and listing screenings
   Background: 
     Given the application is started

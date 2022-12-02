@@ -20,4 +20,12 @@ public interface ScreeningRepository extends JpaRepository<Screening,String> {
             "order by time desc ",
     nativeQuery = true)
     Optional<Screening> findFirstBefore(@Param("roomName") String roomName, @Param("date") LocalDateTime date);
+
+    @Query(value = "select * " +
+            "from Screening " +
+            "where room_name=:roomName " +
+            "and time>:date " +
+            "order by time desc ",
+            nativeQuery = true)
+    Optional<Screening> findFirstAfter(@Param("roomName") String roomName, @Param("date") LocalDateTime date);
 }

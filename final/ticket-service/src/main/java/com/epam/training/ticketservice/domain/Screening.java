@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 public class Screening {
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @ToString.Exclude
     private Movie movie;
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @ToString.Exclude
     private Room room;
     private LocalDateTime time;
