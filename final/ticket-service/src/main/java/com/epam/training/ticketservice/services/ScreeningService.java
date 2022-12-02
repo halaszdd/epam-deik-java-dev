@@ -27,7 +27,9 @@ public class ScreeningService {
 
     private final RoomRepository roomRepository;
 
-    public ScreeningService(ScreeningRepository screeningRepository, MovieRepository movieRepository, RoomRepository roomRepository) {
+    public ScreeningService(ScreeningRepository screeningRepository,
+                            MovieRepository movieRepository,
+                            RoomRepository roomRepository) {
         this.screeningRepository = screeningRepository;
         this.movieRepository = movieRepository;
         this.roomRepository = roomRepository;
@@ -35,8 +37,10 @@ public class ScreeningService {
 
     @Transactional
     public void createScreening(RegisterScreeningModel registerScreeningModel) {
-        final var movie = movieRepository.findById(registerScreeningModel.getTitle()).orElseThrow(NoSuchElementException::new);
-        final var room = roomRepository.findById(registerScreeningModel.getName()).orElseThrow(NoSuchElementException::new);
+        final var movie = movieRepository.findById(registerScreeningModel.getTitle())
+                .orElseThrow(NoSuchElementException::new);
+        final var room = roomRepository.findById(registerScreeningModel.getName())
+                .orElseThrow(NoSuchElementException::new);
 
         final var screening = Screening.builder()
                 .screeningId(ScreeningId.builder()
@@ -46,24 +50,33 @@ public class ScreeningService {
                         .build())
                 .build();
 
-        var screeningBefore = screeningRepository.findFirstBefore(room.getName(), registerScreeningModel.getTime());
+        var screeningBefore = screeningRepository
+                .findFirstBefore(room.getName(), registerScreeningModel.getTime());
 
+        ScreeningId screeningId = screening.getScreeningId();
         screeningBefore.ifPresent(s -> {
-            if (screening.getScreeningId().getTime().isBefore(s.getScreeningId().getTime().plusMinutes(s.getScreeningId().getMovie().getLength()))) {
+            if (screeningId.getTime()
+                    .isBefore(s.getScreeningId().getTime().plusMinutes(s.getScreeningId().getMovie().getLength()))) {
                 throw new ScreeningOverlapException("Overlapping screening found: " + screeningBefore);
             }
-            if (screening.getScreeningId().getTime().isBefore(s.getScreeningId().getTime().plusMinutes(10).plusMinutes(s.getScreeningId().getMovie().getLength()))) {
+            if (screeningId.getTime()
+                    .isBefore(s.getScreeningId().getTime()
+                            .plusMinutes(10)
+                            .plusMinutes(s.getScreeningId().getMovie().getLength()))) {
                 throw new ScreeningBreaktimeOverlapException("Overlapping screening during break: " + screeningBefore);
             }
         });
 
-        var screeningAfter = screeningRepository.findFirstAfter(room.getName(), registerScreeningModel.getTime());
+        var screeningAfter = screeningRepository
+                .findFirstAfter(room.getName(), registerScreeningModel.getTime());
 
         screeningAfter.ifPresent(s -> {
-            if (screening.getScreeningId().getTime().plusMinutes(screening.getScreeningId().getMovie().getLength()).isAfter(s.getScreeningId().getTime())) {
+            if (screeningId.getTime().plusMinutes(screeningId.getMovie().getLength())
+                    .isAfter(s.getScreeningId().getTime())) {
                 throw new ScreeningOverlapException("Overlapping screening found: " + screeningBefore);
             }
-            if (screening.getScreeningId().getTime().plusMinutes(screening.getScreeningId().getMovie().getLength()).isAfter(s.getScreeningId().getTime().minusMinutes(10))) {
+            if (screeningId.getTime().plusMinutes(screeningId.getMovie().getLength())
+                    .isAfter(s.getScreeningId().getTime().minusMinutes(10))) {
                 throw new ScreeningBreaktimeOverlapException("Overlapping screening during break: " + screeningBefore);
             }
         });

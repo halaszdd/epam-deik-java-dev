@@ -18,7 +18,9 @@ public class TestDataLoader {
 
     private final RoomRepository roomRepository;
 
-    public TestDataLoader(UserRepository userRepository, MovieRepository movieRepository, RoomRepository roomRepository) {
+    public TestDataLoader(UserRepository userRepository,
+                          MovieRepository movieRepository,
+                          RoomRepository roomRepository) {
         this.userRepository = userRepository;
         this.movieRepository = movieRepository;
         this.roomRepository = roomRepository;

@@ -28,8 +28,7 @@ public class MovieService {
 
     @Transactional
     public void updateMovie(Movie movie) {
-        Movie movie1 = movieRepository.findById(movie.getTitle()).orElseThrow(()
-                -> {
+        Movie movie1 = movieRepository.findById(movie.getTitle()).orElseThrow(() -> {
             throw new NoSuchElementException();
         });
         movie1.setTitle(movie.getTitle());
@@ -39,8 +38,7 @@ public class MovieService {
     }
 
     public void deleteMovie(String title) {
-        Movie movie = movieRepository.findById(title).orElseThrow(()
-                -> {
+        Movie movie = movieRepository.findById(title).orElseThrow(() -> {
             throw new NoSuchElementException();
         });
         movieRepository.delete(movie);

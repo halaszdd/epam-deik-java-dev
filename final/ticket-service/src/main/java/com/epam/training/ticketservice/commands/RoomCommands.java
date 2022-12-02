@@ -46,7 +46,9 @@ public class RoomCommands extends SecuredCommands {
             System.out.println("There are no rooms at the moment");
         } else {
             for (var e : rooms) {
-                System.out.println("Room " + e.getName() + " with " + e.getRows() * e.getColumns() + " seats, " + e.getRows() + " rows and " + e.getColumns() + " columns");
+                System.out.println("Room " + e.getName() + " with "
+                        + e.getRows() * e.getColumns() + " seats, " + e.getRows()
+                        + " rows and " + e.getColumns() + " columns");
             }
         }
     }

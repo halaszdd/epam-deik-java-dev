@@ -28,8 +28,7 @@ public class RoomService {
 
     @Transactional
     public void updateRoom(Room room) {
-        Room room1 = roomRepository.findById(room.getName()).orElseThrow(()
-                -> {
+        Room room1 = roomRepository.findById(room.getName()).orElseThrow(() -> {
             throw new NoSuchElementException();
         });
         room1.setName(room.getName());
@@ -39,8 +38,7 @@ public class RoomService {
     }
 
     public void deleteMovie(String name) {
-        Room room = roomRepository.findById(name).orElseThrow(()
-                -> {
+        Room room = roomRepository.findById(name).orElseThrow(() -> {
             throw new NoSuchElementException();
         });
         roomRepository.delete(room);

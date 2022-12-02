@@ -14,17 +14,17 @@ import java.util.Optional;
 @Repository
 public interface ScreeningRepository extends JpaRepository<Screening, ScreeningId> {
 
-    @Query(value = "select screening " +
-            "from Screening screening " +
-            "where screening.screeningId.room.name=:roomName " +
-            "and time<:date " +
-            "order by time desc ")
+    @Query(value = "select screening "
+            + "from Screening screening "
+            + "where screening.screeningId.room.name=:roomName "
+            + "and time<:date "
+            + "order by time desc ")
     Optional<Screening> findFirstBefore(@Param("roomName") String roomName, @Param("date") LocalDateTime date);
 
-    @Query(value = "select screening " +
-            "from Screening screening " +
-            "where screening.screeningId.room.name=:roomName " +
-            "and time>:date " +
-            "order by time desc ")
+    @Query(value = "select screening "
+            + "from Screening screening "
+            + "where screening.screeningId.room.name=:roomName "
+            + "and time>:date "
+            + "order by time desc ")
     Optional<Screening> findFirstAfter(@Param("roomName") String roomName, @Param("date") LocalDateTime date);
 }
