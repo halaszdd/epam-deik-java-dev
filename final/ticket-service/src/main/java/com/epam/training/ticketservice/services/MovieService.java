@@ -31,7 +31,6 @@ public class MovieService {
         Movie movie1 = movieRepository.findById(movie.getTitle()).orElseThrow(() -> {
             throw new NoSuchElementException();
         });
-        movie1.setTitle(movie.getTitle());
         movie1.setCategory(movie.getCategory());
         movie1.setLength(movie.getLength());
         LOGGER.info("Movie updated: {}", movie1);

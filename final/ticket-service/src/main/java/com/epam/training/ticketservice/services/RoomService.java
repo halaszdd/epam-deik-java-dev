@@ -31,13 +31,12 @@ public class RoomService {
         Room room1 = roomRepository.findById(room.getName()).orElseThrow(() -> {
             throw new NoSuchElementException();
         });
-        room1.setName(room.getName());
         room1.setRows(room.getRows());
         room1.setColumns(room.getColumns());
         LOGGER.info("Room updated: {}", room1);
     }
 
-    public void deleteMovie(String name) {
+    public void deleteRoom(String name) {
         Room room = roomRepository.findById(name).orElseThrow(() -> {
             throw new NoSuchElementException();
         });

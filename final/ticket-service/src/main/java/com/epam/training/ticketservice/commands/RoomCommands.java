@@ -36,7 +36,7 @@ public class RoomCommands extends SecuredCommands {
     @ShellMethod(key = "delete room")
     @ShellMethodAvailability(value = "isAdmin")
     public void deleteRoom(String name) {
-        roomService.deleteMovie(name);
+        roomService.deleteRoom(name);
     }
 
     @ShellMethod(key = "list rooms")
