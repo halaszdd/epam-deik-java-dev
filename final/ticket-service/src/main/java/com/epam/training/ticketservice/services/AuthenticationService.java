@@ -17,12 +17,11 @@ public class AuthenticationService {
     }
 
     public void authenticate(String username, String password) {
-        //TODO authentication exep
         var user = userRepository.findById(username).orElseThrow();
         if (password.equals(user.getPassword())) {
             loggedInUser = user;
         } else {
-            throw new RuntimeException();
+            throw new AuthenticationFailedException();
         }
     }
 

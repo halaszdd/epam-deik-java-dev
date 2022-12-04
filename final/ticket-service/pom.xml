@@ -126,6 +126,9 @@
                 <configuration>
                     <excludes>
                         <exclude>com/epam/training/ticketservice/domain/*</exclude>
+                        <exclude>com/epam/training/ticketservice/services/AuthenticationFailedException.*</exclude>
+                        <exclude>com/epam/training/ticketservice/services/ScreeningBreaktimeOverlapException.*</exclude>
+                        <exclude>com/epam/training/ticketservice/services/ScreeningOverlapException.*</exclude>
                         <exclude>com/epam/training/ticketservice/configuration/*</exclude>
                         <exclude>com/epam/training/ticketservice/Application.*</exclude>
                         <exclude>com/epam/training/ticketservice/TestDataLoader.*</exclude>

@@ -1,6 +1,7 @@
 package com.epam.training.ticketservice.commands;
 
 import com.epam.training.ticketservice.domain.Role;
+import com.epam.training.ticketservice.services.AuthenticationFailedException;
 import com.epam.training.ticketservice.services.AuthenticationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class ApplicationCommands extends SecuredCommands {
         try {
             authenticationService.authenticate(username, password);
             LOGGER.info("Signed in!");
-        } catch (RuntimeException e) {
+        } catch (AuthenticationFailedException e) {
             System.out.println("Login failed due to incorrect credentials");
         }
     }
